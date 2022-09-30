@@ -1,0 +1,15 @@
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin: *
+</IfModule>
+<IfModule>
+    RewriteEngine On
+
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^.*\.(htaccess|htpasswd|tpl|inc)$ [L,R=404]
+    RewriteRule ^.*\.(index)$ /index.php [NC,L,QSA]
+
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^.*\.(htaccess|htpasswd|tpl|inc)$ [L,R=404]
+    RewriteRule ^.*\.(xhr)$ /xhr.php [NC,L,QSA]
+
+</IfModule>
