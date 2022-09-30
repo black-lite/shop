@@ -28,7 +28,7 @@ class Index extends View
 		<body>
 		<div class="main_wrapper">
 			<div class="header">
-				<?php Header::render();?>
+				<?php ?>
 			</div>
 			<div class="content_wrapper">
 				<?php Content::render();?>

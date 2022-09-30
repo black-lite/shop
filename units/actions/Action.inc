@@ -11,7 +11,7 @@ class Action
 	protected array $searchParams;
 	protected array $defaultParams;
 
-	public function __construct(string $scene, string $layer, string $params, string $script, array $searchParams, array $defaultParams)
+	public function __construct(string $scene, string $layer, string $params, string $script, array $searchParams = [], array $defaultParams = [])
 	{
 		$this->scene = $scene;
 		$this->layer = $layer;
@@ -21,23 +21,28 @@ class Action
 		$this->defaultParams = $defaultParams;
 	}
 
-	function link(string $text, array $values, array $attrs): string
+	function link(string $text, array $values, array $attrs = [])
 	{
-		$_attrs = [];
+		/** s=__s&l=__l&id=__id */
+		$param = $this->params;
 
-		foreach ($attrs as $nameAttr => $valAttr)
-		{
-			$_attrs[] = "{$nameAttr}='$valAttr'";
-		}
+		$script = $this->script($values);
 
-		$readyAttrs = implode(' ', $_attrs);
-		return "<a {$readyAttrs}></a>";
+
+		//<a href="', implode('&', $arr), '"', echo ``,'>',$text,'</a>
+		echo '<a href="" '. 'onclick="' . $script .'"', '>' ,$text ,'</a>';
 	}
 
-	public function script(array $values, array $attrs) : string
+	public function script(array $values) : string
 	{
-		$attributes = '';
+		$script = $this->script;
 
-		// <a class="link" onclick="navUI()"></a>
+		$script = str_replace('__s', $this->scene, $script);
+		$script = str_replace('__l', $this->layer, $script);
+
+		foreach ($values as $param => $value) $script = str_replace("__{$param}", $value, $script);
+
+		return $script;
+		// onclick="navUI()"
 	}
 }

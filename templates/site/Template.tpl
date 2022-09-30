@@ -19,6 +19,8 @@ class Template extends Templates
 
 	public function __construct()
 	{
+		parent::__construct();
+
 		$this->header = new Section();
 		$this->content = new Section();
 		$this->footer = new Section();

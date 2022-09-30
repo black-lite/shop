@@ -7,6 +7,4 @@
     RewriteCond %{REQUEST_FILENAME} -f
     RewriteRule ^.*\.(htaccess|htpasswd|tpl|inc)$ [L,R=404]
     RewriteRule ^.*\.(index)$ /index.php [NC,L,QSA]
-
-
 </IfModule>
