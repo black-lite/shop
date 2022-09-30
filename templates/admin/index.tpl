@@ -7,7 +7,7 @@ use Core\View;
 
 require 'content.tpl';
 require 'header.tpl';
-require __DIR__.'/../../core/view.inc';
+require __DIR__ . '/../../core/view.inc';
 
 class Index extends View
 {

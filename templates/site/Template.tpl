@@ -6,9 +6,9 @@ use Core\Section;
 use Core\Templates;
 use Template\Site\Index;
 
-require __DIR__.'/../../core/Templates.inc';
-require __DIR__.'/../../core/section.inc';
-require __DIR__.'/index.tpl';
+require __DIR__ . '/../../core/Templates.inc';
+require __DIR__ . '/../../core/section.inc';
+require __DIR__ . '/index.tpl';
 
 class Template extends Templates
 {

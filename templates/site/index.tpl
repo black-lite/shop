@@ -6,7 +6,7 @@ use Core\Site\Template;
 use Core\Templates;
 use Core\View;
 
-require __DIR__.'/../../core/view.inc';
+require __DIR__ . '/../../core/view.inc';
 
 class Index extends View
 {
