@@ -23,14 +23,32 @@ class Action
 
 	function link(string $text, array $values, array $attrs = [])
 	{
-		/** s=__s&l=__l&id=__id */
-		$param = $this->params;
+		$params = $this->params;
 
 		$script = $this->script($values);
 
+		$url[] = "s={$this->scene}";
+		$url[] = "l={$this->layer}";
+		$emptyUrl = implode('&', $url);
 
-		//<a href="', implode('&', $arr), '"', echo ``,'>',$text,'</a>
-		echo '<a href="" '. 'onclick="' . $script .'"', '>' ,$text ,'</a>';
+		if (!empty($values))
+		{
+			foreach ($values as $key => $val)
+			{
+				if (in_array($key, $this->searchParams))
+				{
+					$params = str_replace("__{$key}", $val, $params);
+				}
+				elseif (array_key_exists($key, $this->defaultParams))
+				{
+					$params = str_replace("__{$key}", $this->defaultParams[$key], $params);
+				}
+			}
+			echo '<a href="' . implode('&', $url) . '&' . $params .'"'. 'onclick="' . $script .'"', '>' ,$text ,'</a>';
+		}
+		else echo '<a href="' . implode('&', $url) . '"' . 'onclick="' . $script .'"', '>' ,$text ,'</a>';
+
+
 	}
 
 	public function script(array $values) : string
@@ -40,8 +58,20 @@ class Action
 		$script = str_replace('__s', $this->scene, $script);
 		$script = str_replace('__l', $this->layer, $script);
 
-		foreach ($values as $param => $value) $script = str_replace("__{$param}", $value, $script);
-
+		if (!empty($values))
+		{
+			foreach ($values as $key => $val)
+			{
+				if (in_array($key, $this->searchParams))
+				{
+					$script = str_replace("__{$key}", $val, $script);
+				}
+				elseif (array_key_exists($key, $this->defaultParams))
+				{
+					$script = str_replace("__{$key}", $this->defaultParams[$key], $script);
+				}
+			}
+		}
 		return $script;
 		// onclick="navUI()"
 	}
