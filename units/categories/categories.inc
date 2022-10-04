@@ -2,7 +2,7 @@
 
 namespace Admin\Units;
 
-require __DIR__ . '/templates/html/adm/categories.tpl';
+require __DIR__ . '/adm/html/adm/categories.tpl';
 
 use Closure;
 use Core\Model;

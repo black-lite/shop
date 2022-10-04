@@ -4,75 +4,31 @@ namespace Core;
 
 class Action
 {
-	protected string $scene;
-	protected string $layer;
-	protected string $params;
-	protected string $script;
-	protected array $searchParams;
-	protected array $defaultParams;
+	protected string $unit_name;
 
-	public function __construct(string $scene, string $layer, string $params, string $script, array $searchParams = [], array $defaultParams = [])
+	protected \Action $list;
+	protected \Action $onCreate;
+	protected \Action $doCreate;
+	protected \Action $onModify;
+	protected \Action $doModify;
+	protected \Action $doDelete;
+
+	public function __construct(string $unit_name)
 	{
-		$this->scene = $scene;
-		$this->layer = $layer;
-		$this->params = $params;
-		$this->script = $script;
-		$this->searchParams = $searchParams;
-		$this->defaultParams = $defaultParams;
+		$this->unit_name = $unit_name;
+
+		$this->actions();
 	}
 
-	function link(string $text, array $values, array $attrs = [])
+	protected function actions()
 	{
-		$params = $this->params;
-
-		$script = $this->script($values);
-
-		$url[] = "s={$this->scene}";
-		$url[] = "l={$this->layer}";
-		$emptyUrl = implode('&', $url);
-
-		if (!empty($values))
-		{
-			foreach ($values as $key => $val)
-			{
-				if (in_array($key, $this->searchParams))
-				{
-					$params = str_replace("__{$key}", $val, $params);
-				}
-				elseif (array_key_exists($key, $this->defaultParams))
-				{
-					$params = str_replace("__{$key}", $this->defaultParams[$key], $params);
-				}
-			}
-			echo '<a href="' . implode('&', $url) . '&' . $params .'"'. 'onclick="' . $script .'"', '>' ,$text ,'</a>';
-		}
-		else echo '<a href="' . implode('&', $url) . '"' . 'onclick="' . $script .'"', '>' ,$text ,'</a>';
-
-
+		$this->list =		new \Action($this->unit_name, 'null',		'',			"s=__s&l=__l");
+		$this->onCreate =	new \Action($this->unit_name, 'onCreate',	'',			"s=__s&l=__l");
+		$this->doCreate =	new \Action($this->unit_name, 'doCreate',	'',			"s=__s&l=__l");
+		$this->onModify =	new \Action($this->unit_name, 'onModify',	'id=__id',	"s=__s&l=__l&id=__id", ['id'], ['id' => 0]);
+		$this->doModify =	new \Action($this->unit_name, 'doModify',	'',			"s=__s&l=__l&id=__id", ['id'], ['id' => 0]);
+		$this->doDelete =	new \Action($this->unit_name, 'doDelete',	'',			"s=__s&l=__l&id=__id", ['id'], ['id' => 0]);
 	}
 
-	public function script(array $values) : string
-	{
-		$script = $this->script;
 
-		$script = str_replace('__s', $this->scene, $script);
-		$script = str_replace('__l', $this->layer, $script);
-
-		if (!empty($values))
-		{
-			foreach ($values as $key => $val)
-			{
-				if (in_array($key, $this->searchParams))
-				{
-					$script = str_replace("__{$key}", $val, $script);
-				}
-				elseif (array_key_exists($key, $this->defaultParams))
-				{
-					$script = str_replace("__{$key}", $this->defaultParams[$key], $script);
-				}
-			}
-		}
-		return $script;
-		// onclick="navUI()"
-	}
 }

@@ -2,7 +2,7 @@
 
 namespace Site;
 
-require __DIR__ . '/templates/html/site/categories.tpl';
+require __DIR__ . '/adm/html/site/categories.tpl';
 
 use Closure;
 use Core\Model;
