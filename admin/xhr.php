@@ -9,6 +9,6 @@ require __DIR__ . '/../core/database/db_mysql.inc';
 
 require __DIR__ . '/../core/Templates.inc';
 
-require __DIR__ . '/../units/categories/categories.adm.html.inc';
+require __DIR__ . '/../units/categories/categories.adm.xhr.inc';
 
 Controller::controllerDo();

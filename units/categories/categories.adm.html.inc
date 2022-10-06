@@ -2,8 +2,6 @@
 
 namespace Admin;
 
-require __DIR__ . '/adm/html/adm/categories.tpl';
-
 use Closure;
 use Core\Action;
 use Core\Controller;
@@ -16,7 +14,7 @@ class Categories extends Units\Categories
 		parent::__construct();
 		$this->instance = $this;
 
-		$this->action = new Action('main', 'null', '', '', [], []);
+		$this->action = new \Action('main', 'null', '', '');
 
 		Controller::$instance->addSL('main', 'null', Closure::fromCallable([$this, 'Main']));
 	}

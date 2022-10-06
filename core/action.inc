@@ -9,15 +9,6 @@ class Action
 	protected array $searchParams;
 	protected array $defaultParams;
 
-	protected string $unit_name;
-
-	protected Action $list;
-	protected Action $onCreate;
-	protected Action $doCreate;
-	protected Action $onModify;
-	protected Action $doModify;
-	protected Action $doDelete;
-
 	public function __construct(string $scene, string $layer, string $params, string $script, array $searchParams = [], array $defaultParams = [])
 	{
 		$this->scene = $scene;
@@ -58,6 +49,14 @@ class Action
 
 	}
 
+	public function url(array $values) : string
+	{
+		$param = $this->params;
+
+		return '';
+		// s=main&l=null"
+	}
+
 	public function script(array $values) : string
 	{
 		$script = $this->script;
@@ -80,6 +79,6 @@ class Action
 			}
 		}
 		return $script;
-		// onclick="navUI()"
+		// onclick="s=main&l=null"
 	}
 }
