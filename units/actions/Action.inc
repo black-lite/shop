@@ -5,6 +5,7 @@ namespace Core;
 class Action
 {
 	protected string $unit_name;
+	protected string $run_type;
 
 	protected \Action $list;
 	protected \Action $onCreate;
@@ -13,11 +14,18 @@ class Action
 	protected \Action $doModify;
 	protected \Action $doDelete;
 
-	public function __construct(string $unit_name)
+	public function __construct(int $run_type, string $unit_name)
 	{
 		$this->unit_name = $unit_name;
+		$this->run_type = $run_type;
 
 		$this->actions();
+
+		switch ($this->run_type)
+		{
+			case 0: $this->regXHR(); break;
+			case 1: $this->regHTML(); break;
+		}
 	}
 
 	protected function actions()
@@ -29,6 +37,18 @@ class Action
 		$this->doModify =	new \Action($this->unit_name, 'doModify',	'',			"s=__s&l=__l&id=__id", ['id'], ['id' => 0]);
 		$this->doDelete =	new \Action($this->unit_name, 'doDelete',	'',			"s=__s&l=__l&id=__id", ['id'], ['id' => 0]);
 	}
+
+	protected function regXHR()
+	{
+
+	}
+
+	protected function regHTML()
+	{
+
+	}
+
+
 
 
 }

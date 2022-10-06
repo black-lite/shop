@@ -21,7 +21,8 @@ class MessageUI implements JsonSerializable
 
 	public function send()
 	{
-		header('Content-Type: application/json', json_encode($this->header));
+		header('Content-Type: application/json', json_encode($this));
+		die;
 	}
 }
 

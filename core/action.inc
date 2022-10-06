@@ -51,10 +51,7 @@ class Action
 
 	public function url(array $values) : string
 	{
-		$param = $this->params;
 
-		return '';
-		// s=main&l=null"
 	}
 
 	public function script(array $values) : string
