@@ -10,11 +10,8 @@ require __DIR__ . '/index.tpl';
 require __DIR__ . '/../../core/Templates.inc';
 require __DIR__ . '/../../core/section.inc';
 
-class Template
+class Template extends \Core\Templates
 {
-	public static ?self $instance = null;
-	public static function init() : static { return new static; }
-
 	public Section $header;
 	public Section $content;
 	public Section $menu;
@@ -22,7 +19,7 @@ class Template
 
 	public function __construct()
 	{
-		static::$instance = $this;
+		parent::__construct();
 
 		$this->header = new Section();
 		$this->content = new Section();

@@ -2,12 +2,15 @@
 
 namespace Core;
 
+use Core\Admin\Template;
+use Core\Units\TPL;
+
 class CategoriesAction extends Action
 {
 
-	public function __construct(string $scene, string $layer, string $params, string $script, array $searchParams = [], array $defaultParams = [])
+	public function __construct(int $run_type, string $unit_name, Template $template)
 	{
-		parent::__construct();
+		parent::__construct($run_type, $unit_name, $template);
 	}
 
 }

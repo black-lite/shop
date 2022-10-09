@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use Core\Admin\Template;
+
 class Action
 {
 	protected string $unit_name;
@@ -14,7 +16,7 @@ class Action
 	protected \Action $doModify;
 	protected \Action $doDelete;
 
-	public function __construct(int $run_type, string $unit_name)
+	public function __construct(int $run_type, string $unit_name, Templates $template)
 	{
 		$this->unit_name = $unit_name;
 		$this->run_type = $run_type;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Core\Units\Categories\TPL;
+namespace Core\Units\TPL;
 
-class Action extends \Core\TPL\Action
+class Categories extends \Core\TPL\Action
 {
 
 }
