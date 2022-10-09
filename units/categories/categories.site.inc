@@ -1,11 +1,8 @@
 <?php
 
-namespace Admin\Units;
+namespace Site\Units;
 
-use Closure;
 use Core\Model;
-use Template\Admin;
-use Core\Controller;
 
 class Categories extends Model
 {

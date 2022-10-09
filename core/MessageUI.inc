@@ -2,9 +2,10 @@
 
 namespace Core;
 
+use JetBrains\PhpStorm\NoReturn;
 use JsonSerializable;
 
-class MessageUI implements JsonSerializable
+class MessageUI
 {
 	public string $header;
 	public string $content;
@@ -14,12 +15,7 @@ class MessageUI implements JsonSerializable
 
 	}
 
-	public function jsonSerialize()
-	{
-		// TODO: Implement jsonSerialize() method.
-	}
-
-	public function send()
+	#[NoReturn] public function send()
 	{
 		header('Content-Type: application/json', json_encode($this));
 		die;

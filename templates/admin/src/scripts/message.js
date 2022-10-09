@@ -1,7 +1,7 @@
 $(document).ready(function () {
-	ajaxInterface = new xhrInterface();
+	window.ajaxInterface = new xhrInterface();
 })
-let ajaxInterface;
+
 class xhrInterface {
 	constructor() {
 		this.xhr = new XMLHttpRequest();

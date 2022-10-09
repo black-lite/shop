@@ -5,6 +5,12 @@ namespace Core;
 class Controller
 {
 	public static ?self $instance = null;
+
+	public static ?self $init = null;
+	public static ?self $prepare = null;
+	public static ?self $work = null;
+	public static ?self $display = null;
+
 	public static function init() : self { return new self(); }
 
 	protected array $items = [];
@@ -37,13 +43,20 @@ class Controller
 		static::$scene = $_GET['s'] ?? $_POST['s'] ?? 'main';
 		static::$layer = $_GET['l'] ?? $_POST['l'] ?? 'null';
 
-		Controller::$instance->doSL(static::$scene, static::$layer);
+		Controller::$init->doSL(static::$scene, static::$layer);
+		Controller::$prepare->doSL(static::$scene, static::$layer);
+		Controller::$work->doSL(static::$scene, static::$layer);
+		Controller::$display->doSL(static::$scene, static::$layer);
 	}
 
 	public function getItems(): array
 	{
 		return $this->items;
 	}
+
 }
 
-Controller::init();
+Controller::$init = new Controller();
+Controller::$prepare = new Controller();
+Controller::$work = new Controller();
+Controller::$display = new Controller();

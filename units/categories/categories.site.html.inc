@@ -20,15 +20,16 @@ class Categories extends Model
 		parent::__construct();
 		$this->instance = $this;
 
-		Controller::$instance->addSL('main', 'null', Closure::fromCallable([$this, 'onMain']));
+		Controller::$work->addSL('main', 'null', Closure::fromCallable([$this, 'onMain']));
 	}
 
-	public function onMain()
+	public function onMain() : MessageUI
 	{
 		$message = new MessageUI();
-		$message->header = Template::$instance->header->push(\Template\Site\HTML\Categories::objectTpl()->renderToVar(['1','2'.'3']));
+		$message->header = '';
+		$message->content = '';
 
-		$message->send();
+		return $message;
 	}
 }
 Categories::init();

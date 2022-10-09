@@ -1,5 +1,6 @@
 <?php
 
+
 class Action
 {
 	protected string $scene;
@@ -45,7 +46,6 @@ class Action
 			echo '<a href="' . implode('&', $url) . '&' . $params .'"'. 'onclick="' . $script .'"', '>' ,$text ,'</a>';
 		}
 		else echo '<a href="' . implode('&', $url) . '"' . 'onclick="' . $script .'"', '>' ,$text ,'</a>';
-
 
 	}
 

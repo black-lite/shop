@@ -3,8 +3,10 @@
 namespace Admin;
 
 use Closure;
-use Core\Action;
+use \Action;
 use Core\Controller;
+
+require __DIR__.'/categories.adm.inc';
 
 class Categories extends Units\Categories
 {
@@ -14,14 +16,14 @@ class Categories extends Units\Categories
 		parent::__construct();
 		$this->instance = $this;
 
-		$this->action = new \Action('main', 'null', '', '');
+		$this->action = new Action('main', 'null', '', '');
 
-		Controller::$instance->addSL('main', 'null', Closure::fromCallable([$this, 'Main']));
+		Controller::$work->addSL('main', 'null', Closure::fromCallable([$this, 'Main']));
 	}
 
 	public function Main()
 	{
-		debug($this->action->link('abc', ['class' => 'link', 'style' => 'color: black; font-size: 20px'], []));
+//		$this->action->link('abc', ['class' => 'link', 'style' => 'color: black; font-size: 20px'], []);
 	}
 }
 Categories::init();

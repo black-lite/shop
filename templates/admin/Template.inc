@@ -17,15 +17,16 @@ class Template
 
 	public Section $header;
 	public Section $content;
+	public Section $menu;
 	public Section $overlay;
 
 	public function __construct()
 	{
-//		parent::__construct();
 		static::$instance = $this;
 
 		$this->header = new Section();
 		$this->content = new Section();
+		$this->menu = new Section();
 		$this->overlay = new Section();
 	}
 
